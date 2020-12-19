@@ -20,9 +20,9 @@ class Blog extends React.Component
                     <br/>
                     {5/2===2.5 ? "YES" : "NO"}
 
-                    {divElement}
+                    
                 </p>
-
+                {divElement}
                   
 
         {this.props.blogInfos.map((currentValue)=>
