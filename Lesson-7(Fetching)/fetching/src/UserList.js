@@ -15,7 +15,7 @@ export default class UserList extends Component {
         axios.get("https://jsonplaceholder.typicode.com/users")
         // .then((response) => console.log(response.data))
        .then((json) => this.setState({ users: json.data, isLoading: false }));
-     }, 3000);
+     }, 1000);
   }
   render() {
     const { isLoading } = this.state;
