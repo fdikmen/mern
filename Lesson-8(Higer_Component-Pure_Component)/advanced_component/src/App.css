@@ -4,8 +4,9 @@
 
 .userList
 {
-  max-height: 200px;
+  max-height: 250px;
   overflow: auto;/*Scroll*/
+  border-bottom: 1px solid red;
 }
 
 .App-logo {
