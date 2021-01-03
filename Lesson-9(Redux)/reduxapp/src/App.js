@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { connect } from "react-redux";
-import { updateUser } from "./actions/userActions";
+import { updateUser,getUser } from "./actions/userActions";
 
 class App extends Component {
   constructor(props) {
@@ -13,6 +13,12 @@ class App extends Component {
     this.props.onUpdateUser("HollyXYZ");    /*With mapDispatchToProps */
       
   }
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.onGetUsers();
+    }, 2000);
+  }
+  
 
   render() {
     console.log("APP Comp. Props:=>", this.props);
@@ -46,6 +52,7 @@ const mapStateToProps = (state,props) => {
 
 const mapDispatchToProps = {
   onUpdateUser: updateUser,
+  onGetUsers:getUser
 };
 
 const mergeProps=(propsFromState,propFromDispatch,ownProps)=>

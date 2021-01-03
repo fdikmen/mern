@@ -3,10 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {combineReducers, createStore } from "redux";
+import {combineReducers, createStore,applyMiddleware,compose } from "redux";
 import {Provider} from "react-redux";
 import userReducer from './reducers/userReducer';
 import productReducer from './reducers/productReducer';
+import thunk from 'redux-thunk';
 
 function reducer(state, action) {
   if (action.type === "deposit") {
@@ -35,6 +36,12 @@ function productReducer(state=[],action){
   return state;
 }
 */
+
+const allEnhancers=compose(
+  applyMiddleware(thunk),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+
 const rootReducer=combineReducers
 (
   {
@@ -46,7 +53,8 @@ const rootReducer=combineReducers
 
 const store = createStore(  rootReducer,
   {user:'Tommy',products:[{name:'Sony',type:'PS5'}]},
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+  allEnhancers
+  );
 /*const store = createStore(reducer); /*Define store object and set paremeter reducer funck */
 
 // console.log(store.getState()); /*View last state value from store */
