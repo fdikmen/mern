@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
+import logger from 'redux-logger';
 
 const intialState=
 {
@@ -44,7 +45,8 @@ const reducer = (state=intialState, action) => {
   //  return state;
 };
 
-const store = createStore(reducer);
+// const colMiddle=applyMiddleware(thunk,logger);
+const store = createStore(reducer,applyMiddleware(logger));
 
 store.subscribe(() => {
   console.log("Store Updated! ", store.getState());
