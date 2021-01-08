@@ -1,0 +1,16 @@
+.formField
+{
+    width: 500px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+
+.formField input
+{
+    margin-top: 10px;/*Input üstten boşluğu*/
+    height: 40px;/*Input Yüksekliği*/
+    line-height: 25px;/*Satır boşluğu*/
+    width: 100%; /*Sağa sola tam yaslanması için*/
+    text-indent: 10px; /*Paragraf Boşluğu*/
+}

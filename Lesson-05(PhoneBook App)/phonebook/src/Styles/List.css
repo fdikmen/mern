@@ -1,0 +1,42 @@
+.listField {
+  width: 500px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.listField li {
+  padding: 5px;
+  background-color: #f8f8f8;
+  color: black;
+  border-bottom: solid 1px #f1f1f1;
+  clear: both;
+}
+
+.listField li span {
+  display: block;
+}
+
+.listField li span.name {
+  float: left;
+}
+
+.listField li span.phone {
+  float: right;
+}
+
+
+.listField input
+{
+    margin-top: 10px;/*Input üstten boşluğu*/
+    height: 40px;/*Input Yüksekliği*/
+    line-height: 25px;/*Satır boşluğu*/
+    width: 100%; /*Sağa sola tam yaslanması için*/
+    text-indent: 10px; /*Paragraf Boşluğu*/
+}
+
+ul,li
+{
+    list-style-type: none;/*Liste işaretini kaldır*/
+    margin: 0;
+    padding: 0;
+}
