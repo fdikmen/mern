@@ -8,7 +8,6 @@ import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import axios from 'axios';
 import reduxPromiseMiddleware from 'redux-promise-middleware';
-import promise from 'redux-promise-middleware';
 
 /*const intialState=
 {
@@ -107,7 +106,7 @@ const reducer=(state=intialState,action)=>{
   }
 }
 
-const mwContainer=applyMiddleware(thunk,logger,reduxPromiseMiddleware,promise);
+const mwContainer=applyMiddleware(thunk,logger,reduxPromiseMiddleware);
 const store = createStore(reducer,mwContainer);
 
 store.subscribe(() => {
@@ -128,23 +127,10 @@ store.dispatch(dispatch =>{
 }  );*/
 
 /*DISPATCH WITH PROMISE MIDDLEWARE */
-// Dispatch the action
-const fooActionCreator = () => ({
-  type: "FOO_TYPE",
-  payload: Promise.resolve(axios.get('https://jsonplaceholder.typicode.com/users/').then(res=>res.data))
-});
-/* eslint-disable import/prefer-default-export */
-import { createAsyncAction } from 'redux-promise-middleware-actions';
-
-/*
- * Function: getDog
- * Description: Fetch an image of a dog from the [Dog API](https://dog.ceo/dog-api/)
- */
-export const getDog = createAsyncAction('GET_DOG', () => (
-  fetch('https://dog.ceo/api/breeds/image/random')
-    .then((response) => response.json())
-));
-store.dispatch(getDog());
+store.dispatch({
+  type:"USERS",
+  payload:axios.get('https://jsonplaceholder.typicode.com/users/').then(res=>res.data)
+})
 //store.dispatch({ type: "ADD", payload: 1 });
 // store.dispatch({ type: "ADD", payload: 10 });
 // store.dispatch({ type: "SUBTRACT", payload: 5 });
