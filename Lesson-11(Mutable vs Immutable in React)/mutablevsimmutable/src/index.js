@@ -5,13 +5,24 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { applyMiddleware, createStore } from "redux";
 import logger from 'redux-logger';
+import thunk from 'redux-thunk';
+import axios from 'axios';
+import reduxPromiseMiddleware from 'redux-promise-middleware';
+import promise from 'redux-promise-middleware';
 
-const intialState=
+/*const intialState=
 {
   count:1,
   users:[]
+}*/
+
+const intialState={
+  fetching:false,
+  fetched:false,
+  users:[],
+  error:null
 }
-/*
+/*DEFAULT REDUCER -> WITH IMMUTABLE STATE
 const reducer = (state=intialState, action) => {
   switch (action.type) {
     case "ADD":
@@ -25,36 +36,118 @@ const reducer = (state=intialState, action) => {
   }
    return state;
 };*/
-const reducer = (state=intialState, action) => {
+/*NEW REDUCER -> WITH MUTABLE STATE */
+// const reducer = (state=intialState, action) => {
+//   switch (action.type) {
+//     /*case "ADD":
+//      return  {
+//       ...state,
+//       count:state.count + action.payload
+//     };*/
+//     case "ADD":
+//       return Object.assign({}, state, { count: state.count + action.payload });
+//     case "SUBTRACT":
+//       return{
+//         ...state,/*Step:1->count:1,users:[],*/
+//         count:state.count - action.payload
+//       };
+//      default:
+//        return state;
+//   }
+//   //  return state;
+// };
+/*WITHOUT PROMISE MIDDLEWARE
+const reducer=(state=intialState,action)=>{
   switch (action.type) {
-    /*case "ADD":
-     return  {
-      ...state,
-      count:state.count + action.payload
-    };*/
-    case "ADD":
-      return Object.assign({}, state, { count: state.count + action.payload });
-    case "SUBTRACT":
-      return{
-        ...state,/*Step:1->count:1,users:[],*/
-        count:state.count - action.payload
-      };
-     default:
-       return state;
+   case "FETCH_USERS_START":
+     return {
+       ...state,
+       fetching:true
+     };
+     case "FETCH_USERS_ERROR":
+       return {
+         ...state,
+         fetching:false,
+         error:action.payload
+       };
+       case "RECEIVE_USERS":
+         return {
+           ...state,
+           fetching:false,
+           fetched:true,
+           users:action.payload
+         };
+         default:
+           return state;
   }
-  //  return state;
-};
+}*/
+/*WITH PROMISE MIDDLEWARE */
+const reducer=(state=intialState,action)=>{
+  switch (action.type) {
+   case "USERS":
+     return {
+       ...state,
+       fetching:true
+     };
+     case "USERS_REJECTED":
+       return {
+         ...state,
+         fetching:false,
+         error:action.payload
+       };
+       case "USERS_FULFILLED":
+         return {
+           ...state,
+           fetching:false,
+           fetched:true,
+           users:action.payload
+         };
+         default:
+           return state;
+  }
+}
 
-// const colMiddle=applyMiddleware(thunk,logger);
-const store = createStore(reducer,applyMiddleware(logger));
+const mwContainer=applyMiddleware(thunk,logger,reduxPromiseMiddleware,promise);
+const store = createStore(reducer,mwContainer);
 
 store.subscribe(() => {
-  console.log("Store Updated! ", store.getState());
+  // console.log("Store Updated! ", store.getState());
 });
 
-store.dispatch({ type: "ADD", payload: 1 });
-store.dispatch({ type: "ADD", payload: 10 });
-store.dispatch({ type: "SUBTRACT", payload: 5 });
+/*MANUEL DISPATCH
+store.dispatch(dispatch =>{
+  dispatch({ type: "FETCH_USERS_START" });
+  axios.get('https://jsonplaceholder.typicode.com/users/')
+  .then(response=>response.data)
+  // .then(response=>console.log(response))
+  .then(response=>dispatch({
+    type:'RECEIVE_USERS',
+    payload:response
+  }))
+  .catch(error=>dispatch({type:"FETCH_USERS_ERROR",payload:error}))
+}  );*/
+
+/*DISPATCH WITH PROMISE MIDDLEWARE */
+// Dispatch the action
+const fooActionCreator = () => ({
+  type: "FOO_TYPE",
+  payload: Promise.resolve(axios.get('https://jsonplaceholder.typicode.com/users/').then(res=>res.data))
+});
+/* eslint-disable import/prefer-default-export */
+import { createAsyncAction } from 'redux-promise-middleware-actions';
+
+/*
+ * Function: getDog
+ * Description: Fetch an image of a dog from the [Dog API](https://dog.ceo/dog-api/)
+ */
+export const getDog = createAsyncAction('GET_DOG', () => (
+  fetch('https://dog.ceo/api/breeds/image/random')
+    .then((response) => response.json())
+));
+store.dispatch(getDog());
+//store.dispatch({ type: "ADD", payload: 1 });
+// store.dispatch({ type: "ADD", payload: 10 });
+// store.dispatch({ type: "SUBTRACT", payload: 5 });
 
 ReactDOM.render(
   <React.StrictMode>
