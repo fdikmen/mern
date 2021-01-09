@@ -83,7 +83,7 @@ const reducer=(state=intialState,action)=>{
 /*WITH PROMISE MIDDLEWARE */
 const reducer=(state=intialState,action)=>{
   switch (action.type) {
-   case "USERS":
+   case "USERS_PENDING":
      return {
        ...state,
        fetching:true
@@ -106,8 +106,8 @@ const reducer=(state=intialState,action)=>{
   }
 }
 
-const mwContainer=applyMiddleware(thunk,logger,reduxPromiseMiddleware);
-const store = createStore(reducer,mwContainer);
+const multiMiddeware=applyMiddleware(thunk,reduxPromiseMiddleware,logger);
+const store = createStore(reducer,multiMiddeware);
 
 store.subscribe(() => {
   // console.log("Store Updated! ", store.getState());
