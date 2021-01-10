@@ -20,7 +20,7 @@ export class MoviesPage extends Component {
         return (
             <div>
                 <h2>Movies Page</h2>
-                <MoviesList movies={this.props.movies}></MoviesList>
+                <MoviesList propsMovies={this.props.movies}></MoviesList>
             </div>
         )
     }

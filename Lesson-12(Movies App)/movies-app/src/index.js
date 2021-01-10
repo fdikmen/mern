@@ -10,10 +10,12 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
+import logger from 'redux-logger';
+import reduxPromise from 'redux-promise-middleware';
 
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(applyMiddleware(thunk,reduxPromise,logger))
 );
 
 ReactDOM.render(
