@@ -8,7 +8,7 @@ class MoviesList extends Component {
     render() {
 const emptyMessage=(<p>There are no movies yet.</p>)
 const moviesList=(<div>Movies List</div>)
-console.log(this.props);
+// console.log(this.props);
         return (
             <div>
                 Movies List Comp
