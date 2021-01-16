@@ -1,13 +1,29 @@
 import React from 'react'
-import { Card, Icon } from 'semantic-ui-react'
-
-
-
+import { Button, Card, Icon } from 'semantic-ui-react'
+import {Link} from 'react-router-dom';
+const extraContent= movieParam => {
+return (<div className="ui two buttons">
+<Button animated as={Link} to={`/movie/edit/${movieParam.id}`}>
+  <Button.Content visible>Edit</Button.Content>
+  <Button.Content hidden>
+    <Icon name='edit outline' />
+  </Button.Content>
+</Button>
+<Button animated='vertical'>
+  <Button.Content hidden>Delete</Button.Content>
+  <Button.Content visible>
+    <Icon name='trash alternate outline' />
+  </Button.Content>
+</Button>
+</div>
+)
+};
 const MovieCard = ({propsMovie}) => (
   <Card
-    image='https://react.semantic-ui.com/images/avatar/large/elliot.jpg'/*{propsMovie.cover}*/
+    image={propsMovie.cover}
     header={propsMovie.title}
-    meta='20..'
+    // meta='20..'
+    extra={extraContent(propsMovie)}
   />
 )
 

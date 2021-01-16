@@ -2,6 +2,7 @@ import "./App.css";
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import MoviesPage from "./components/pages/MoviesPage";
+import NewMoviesPage from "./components/pages/NewMoviesPage";
 import { Container } from "semantic-ui-react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -13,7 +14,9 @@ class App extends Component {
         <Container text>
           Component App
           <br />
-          <Route path="/movies" component={MoviesPage}></Route>
+          <Route exact path="/movies" component={MoviesPage}></Route>
+          <Route exact path="/movies/new" component={NewMoviesPage}></Route>
+          <Route exact path='/movie/edit/:id' component={NewMoviesPage}></Route>
         </Container>
         <Footer />
       </div>
