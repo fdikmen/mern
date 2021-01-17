@@ -5,7 +5,7 @@ import { Grid } from 'semantic-ui-react';
 // import PacmanLoader from "react-spinners/PacmanLoader";
 import {RiseLoader} from "react-spinners";
 
-function MoviesList({ propsMovies }) {
+function MoviesList({ propsMovies,deleteMovie }) {
   const emptyMessage = <p>There are no movies yet.</p>;
   const moviesList = (
     <div>
@@ -16,7 +16,7 @@ function MoviesList({ propsMovies }) {
           <Grid.Row>
             {propsMovies.movieList.map((movie) => (
               <Grid.Column key={movie.id}>
-                <MovieCard propsMovie={movie} />
+                <MovieCard deleteMovie={deleteMovie} propsMovie={movie} />
               </Grid.Column>
             ))}
           </Grid.Row>
