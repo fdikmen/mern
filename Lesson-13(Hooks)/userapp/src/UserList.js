@@ -8,12 +8,12 @@ const UserList = () => {
     //const context=useContext(UserContext);==>context.users
     // console.log("UserList=>",useContext(UserContext));
   return (
-    <>
+    <div>
       <h2>User List</h2>
       {users.map(user => (
         <User key={user.id} user={user}/>
       ))}
-    </>
+    </div>
   );
 };
 

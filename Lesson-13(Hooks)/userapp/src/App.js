@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import UserList from "./UserList";
 import {UserContext} from './context/UserContext'
+import UseRefComp from './useRefComp'
 
 
 const data = [
@@ -18,14 +19,15 @@ const App = () => {
     );
 // console.log("APP=>",users,"---------------------",changeColor);
   return (
-    <UserContext.Provider value={{changeColor,users}}>
+    <UseRefComp/>
+    /*<UserContext.Provider value={{changeColor,users}}>
       <div className="App">
       <header>
         <h1>Welcome!</h1>
       </header>
       <UserList/>
     </div>
-    </UserContext.Provider>
+    </UserContext.Provider> */   
   );
 };
 
