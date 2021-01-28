@@ -1,0 +1,16 @@
+{
+  "name": "3-npminit",
+  "version": "1.0.0",
+  "description": "Desc Text1 Text2 Text3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Key1",
+    "Key2",
+    "Key3"
+  ],
+  "author": "DIKMEN",
+  "license": "MIT"
+}
