@@ -1,0 +1,43 @@
+html 
+    head 
+        title Hello PUG!
+    //- body Hello PUG in body...
+    //  Comment Line -1... 
+    //- Comment Line -2...
+    body 
+        include title 
+        hr
+        - var jobTitle = 'International Infrastructure Strategist'
+        - var jobDesc = 'District'
+        =jobTitle
+        br
+        | Job Desc: #{jobDesc.toUpperCase()}
+        hr
+        - var number = 10;
+        if !number
+            | Number variable doesnt exist.
+        else if number === 10
+            | The number is 10.
+        else 
+            | The number isnt 10.
+        hr
+        ul
+          each val in [1, 2, 3, 4, 5]
+            li= val
+        hr
+        ul
+            each val, index in ['zero', 'one', 'two']
+                li= index + ': ' + val
+        hr
+        - var n = 0;
+        ul
+            while n < 4
+                li= n++
+        hr
+        =phone
+        hr
+        span(style="color:white;background-color:red;") PUG is here!!!
+        br
+        |Hello PUG in body... Name: #{name}
+        hr
+        include footer.pug
