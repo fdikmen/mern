@@ -11,6 +11,8 @@ var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost:27017/mongoosedbv1', 
 {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.set('useCreateIndex',true);
+
 
 mongoose.connection.on('open',()=>{console.log('MongoDB connection has been made.');});
 mongoose.connection.on('error',(err)=>{console.log('MongoDB connection failed. Detail: ',err);});
