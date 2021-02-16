@@ -109,7 +109,7 @@ Store Oluşturmak <br/>
 Store u Dispatch Metodu ile güncellemek <br/>
 Store Subscribe Metodu <br/>
 CombineReducer ile Multi Reducer Kullanımı <br/>
-Reducer’a Intial State Vermek <br/>
+Reducer’a Initial State Vermek <br/>
 Redux DevTools <br/>
 Provider Nedir?	 <br/>
 Dizin Yapısının Oluşturulması <br/>
