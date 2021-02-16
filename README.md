@@ -7,11 +7,11 @@ REACT NEDİR? <br/>
 ECMASCRIPT <br/>
 LET <br/>
 CONST <br/>
-DEFAULT PAREMATER <br/>
+DEFAULT PARAMETER <br/>
 DESTRUCTURING ASSIGMENT (Çoklu Değer Atama) <br/>
 ARROW FUNCTION <br/>
 Object Oriented Programming (Nesne Yönelimli Programlama) <br/>
-Super Metodları İle İnheritance	 <br/>
+Super Metodları İle Inheritance	 <br/>
 Super ile bütün parametreleri yazmak zorunda mıyız? <br/>
 Bir Class a dışarıdan Ulaşmak (STATIC) <br/>
 Template <br/>
