@@ -75,7 +75,7 @@ React Lifecycle (Yaşam döngüsü) <br/>
 2.	Mounting <br/>
 2.1.	ComponentWillMount() <br/>
 2.2.	ComponentDidMount()	 <br/>
-3.	Updation (Updeyşın) (Güncelleme) <br/>
+3.	Updation (Güncelleme) <br/>
 3.1.	ComponentWillReceiveProps() <br/>
 3.2.	ShouldComponentUpdate <br/>
 3.3.	ComponentWillUpdate() <br/>
