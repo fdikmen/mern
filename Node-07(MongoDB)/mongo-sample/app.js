@@ -21,6 +21,8 @@ mongoose.connection.on('error',(err)=>{console.log('MongoDB connection failed. D
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postsRouter = require('./routes/posts');
+var authorRouter = require('./routes/author.route')
+var bookRouter = require('./routes/book.route')
 
 var app = express();
 
@@ -37,6 +39,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts',postsRouter);
+app.use('/authors',authorRouter);
+app.use('/books',bookRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
