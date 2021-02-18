@@ -19,8 +19,20 @@ router.post('/add', function (req, res) {
 router.get('/Sorting', (req, res) => {
   Post.find({},'title isActive meta.favs',(err,datas)=>{
     res.json(datas);
-  }).sort({'meta.favs': 'desc',title:1}); //=> 1, 'asc' , 'ascending2 || -1, 'desc', 'desending'
-  // res.send('GET request to the postPage')
+  }).sort({'meta.favs': 'desc',title:1}); //=> 1, 'asc' , 'ascending || -1, 'desc', 'desending'
+ 
+})
+
+router.get('/Limit', (req, res) => {
+  Post.find({},'title isActive meta.favs',(err,datas)=>{
+    res.json(datas);
+  }).skip(1).limit(2); 
+})
+
+router.get('/Skip', (req, res) => {
+  Post.find({},'title isActive meta.favs',(err,datas)=>{
+    res.json(datas);
+  }).skip(2); 
 })
 
 router.get('/', (req, res) => {
