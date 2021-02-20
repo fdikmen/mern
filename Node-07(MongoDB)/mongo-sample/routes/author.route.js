@@ -3,7 +3,8 @@ const router = express.Router()
 
 const AuthorModel = require('../models/Author')
 
-router.get('/',function(req,res,next){res.json('Authors List....')})
+router.get('/findExists',function(req,res,next){
+    AuthorModel.find({score:{$exists:false}},"name score views",(req,result)=>{res.json(result)});})
 
 router.post('/add', function (req, res) {
     const author = new AuthorModel({
@@ -58,10 +59,11 @@ router.get('/aggregate-lookup', function (req, res) {
             foreignField: "authorId",
             as: "book",
           },
-      }
+      },
+      {$unwind:'$book'},
+      {$project:{name:true,book:'$book.title'}}
     ],(req,result)=>{res.json(result)});
+
 })
-
-
 
 module.exports = router
